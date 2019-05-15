@@ -25,7 +25,7 @@ module.exports = (robot) ->
 
   robot.enter (res) ->
     res.send res.random enterReplies
-    robot.messageRoom res.envelope.user.name "Welcome to the Bench!"
+    robot.messageRoom '@'+res.envelope.user.name "Welcome to the Bench!"
 
   robot.leave (res) ->
     res.send res.random leaveReplies
