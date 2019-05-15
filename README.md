@@ -28,3 +28,4 @@ If you don't know what your channel id is, just write the code first. Then run t
 
 ### Deployment via Heroku
 TBD
+`heroku config:set HUBOT_SLACK_TOKEN=<key>`
