@@ -35,4 +35,4 @@ module.exports = (robot) ->
   new cronJob('0 55 9 * * 2', tz, sprintPlanningReminder) # Wednesdays @ 9:55am
   new cronJob('0 0 10 * * 4', tz, dailyBlockers)          # Thursdays @ 10am
   new cronJob('0 0 10 * * 2', tz, virtualStandup)         # Fridays @ 10am
-  new cronJob('0 0 16 * * 1-5', tz, timesheetReminder)    # Weekdays @ 4pm
+  # new cronJob('0 0 16 * * 1-5', tz, timesheetReminder)    # Weekdays @ 4pm
