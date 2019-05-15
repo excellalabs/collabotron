@@ -5,9 +5,9 @@ module.exports = (robot) ->
   robot.hear /livin([g]?) the dream/i, (res) ->
     res.reply "Wake up!"
 
-  robot.hear /hit me/i, (res) ->
-    robot.messageRoom(res.envelope.user.id, "Welcome to the Bench!")
-    res.reply "DM Sent!"
+  robot.hear /brunch/i, (res) ->
+    breakfast = ['pancakes', 'waffles', 'an omelete', 'a breakfast burrito']
+    res.reply "Order me " + res.random(breakfast) + ", please!"
 
   #
   # 2001
@@ -29,6 +29,7 @@ module.exports = (robot) ->
 
   robot.enter (res) ->
     res.send res.random enterReplies
+    robot.messageRoom(res.envelope.user.id, "Welcome to the Bench!")
 
   robot.leave (res) ->
     res.send res.random leaveReplies

@@ -8,8 +8,8 @@ module.exports = (robot) ->
   cronJob = require('cron').CronJob
   tz = 'America/New_York'
   new cronJob('0 0 10 * * 1-5', workdaysTenAm, null, true, tz)
-  new cronJob('0 0 15 * * 1-5', workdaysThreePm, null, true, tz)
-  new cronJob('0 */5  * * * *', everyFiveMinutes, null, true, tz)
+  new cronJob('10 15 * * * 1-5', workdaysThreePm, null, true, tz)
+  new cronJob('*/5 * * * * *', everyFiveMinutes, null, true, tz)
 
   room = 'benchbot-dev'
 
