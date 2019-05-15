@@ -5,7 +5,7 @@ module.exports = (robot) ->
   robot.hear /livin([g]?) the dream/i, (res) ->
     res.reply "Wake up!"
 
-  robot.hear /brunch/i, (res) ->
+  robot.respond /brunch/i, (res) ->
     breakfast = ['pancakes', 'waffles', 'an omelete', 'a breakfast burrito']
     res.reply "Order me " + res.random(breakfast) + ", please!"
 

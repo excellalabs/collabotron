@@ -10,6 +10,7 @@ module.exports = (robot) ->
   new cronJob('0 0 10 * * 1-5', workdaysTenAm, null, true, tz)
   new cronJob('10 15 * * * 1-5', workdaysThreePm, null, true, tz)
   new cronJob('*/5 * * * * *', everyFiveMinutes, null, true, tz)
+  new cronJob('* * * * * *', everySecond, null, true, tz)
 
   room = 'benchbot-dev'
 
@@ -21,3 +22,6 @@ module.exports = (robot) ->
 
   everyFiveMinutes = ->
     robot.messageRoom room, 'I will nag you every 5 minutes'
+
+  everySecond = ->
+    console.log('second ping = win')
