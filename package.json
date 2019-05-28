@@ -1,6 +1,6 @@
 {
   "name": "benchbot",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "author": "brendon.caulkins@excella.com",
   "description": "Hubot for Excella Bench",
