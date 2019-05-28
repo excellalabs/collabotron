@@ -15,7 +15,7 @@ module.exports = (robot) ->
     robot.messageRoom room, '@here Are you blocked by anything?  Are you looking to pair-program? Remember to radiate questions and problems, we\'re all in this together!'
 
   virtualStandup = ->
-    robot.messageRoom room, '@here It\'s time for our virtual standup.  What are you working on that you need halp with, and if you\'re free, what would you like to work on?'
+    robot.messageRoom room, '@here It\'s time for our virtual standup.  What are you working on that you need help with, and if you\'re free, what would you like to work on?'
 
   sprintPlanningReminder = ->
     robot.messageRoom room, '@here Reminder: Sprint Planning begins shortly!'
