@@ -1,11 +1,13 @@
 {
   "name": "benchbot",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "author": "brendon.caulkins@excella.com",
   "description": "Hubot for Excella Bench",
   "dependencies": {
-    "hubot": "^3.1.1",
+    "cron": "^1.7.1",
+    "hubot": "^3.3.2",
+    "hubot-cronjob": "^0.2.2",
     "hubot-diagnostics": "^1.0.0",
     "hubot-google-images": "^0.2.7",
     "hubot-google-translate": "^0.2.1",
