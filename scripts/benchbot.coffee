@@ -37,10 +37,15 @@ Here's what you need to know:
 2) Please add yourself to the bench email distribution list if you aren't already there
 3) Read more about these steps and other Bench related stuffs on the bench Portal, here: https://excellaco.sharepoint.com/sites/Services/SitePages/Bench-Portal.aspx?web=1
 """
-    robot.messageRoom(res.envelope.user.id, benchWelcomeMessage)
+    # robot.messageRoom(res.envelope.user.id, benchWelcomeMessage)
 
   robot.leave (res) ->
     res.send res.random leaveReplies
+    benchDepartureMessage = """ We're sorry to see you leave the bench!
+Please make sure you've closed or otherwise passed off any LeanKit tickets to someone else on the bench.
+Best of luck on your next project!
+"""
+    # robot.messageRoom(res.envelope.user.id, benchDepartureMessage)
 
   #
   #  ERROR HANDLING
