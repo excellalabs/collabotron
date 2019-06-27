@@ -7,18 +7,15 @@ module.exports = (robot) ->
   tz = 'America/New_York'
   rooms = ['benchbot-dev', 'bench']
 
-  robot.hear /benchbot ask for blockers/i, (res) ->
-    for room in rooms
-      console.log('sending to ', room)
-
   #
   # Event Handler Functions
   #
 
   dailyBlockers = ->
+    blockers = ':speech_balloon: Good morning, team! If we have any *blockers* or *opportunities to pair*, please thread them @here.'
     for room in rooms
-      console.log('sending to ', room)
-      # robot.messageRoom room, ':speech_balloon: Good morning, team! If we have any *blockers* or *opportunities to pair*, please thread them @here.'
+      console.log('sending daily blockers to', room)
+      robot.messageRoom room, blockers
 
   virtualStandup = ->
     robot.messageRoom room, '@here It\'s time for our virtual standup.  What are you working on that you need help with, and if you\'re free, what would you like to work on?'
