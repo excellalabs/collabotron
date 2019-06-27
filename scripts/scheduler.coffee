@@ -6,7 +6,10 @@ module.exports = (robot) ->
   cronJob = require('hubot-cronjob')
   tz = 'America/New_York'
   rooms = ['benchbot-dev', 'bench']
-  dailyBlockers()
+
+  robot.hear /benchbot ask for blockers/i, (res) ->
+    for room in rooms
+      console.log('sending to ', room)
 
   #
   # Event Handler Functions
