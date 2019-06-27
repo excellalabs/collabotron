@@ -13,10 +13,9 @@ module.exports = (robot) ->
   #
 
   dailyBlockers = ->
-    rooms.forEach(room => {
+    for room in rooms
       console.log('sending to ', room)
       # robot.messageRoom room, ':speech_balloon: Good morning, team! If we have any *blockers* or *opportunities to pair*, please thread them @here.'
-    })
 
   virtualStandup = ->
     robot.messageRoom room, '@here It\'s time for our virtual standup.  What are you working on that you need help with, and if you\'re free, what would you like to work on?'
