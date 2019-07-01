@@ -1,4 +1,5 @@
 module.exports = (robot) ->
+
   robot.hear /benchbot test/i, (res) ->
     res.send "It's working."
 
@@ -8,6 +9,11 @@ module.exports = (robot) ->
   robot.respond /brunch/i, (res) ->
     breakfast = ['pancakes', 'waffles', 'an omelete', 'a breakfast burrito']
     res.reply "Order me " + res.random(breakfast) + ", please!"
+
+  # Auto threading
+  robot.hear /thread (.*) here/i, (res) ->
+    res.message.thread_ts = res.message.rawMessage.ts
+    res.send ':thread:'
 
   #
   # 2001

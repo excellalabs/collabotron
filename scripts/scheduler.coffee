@@ -12,7 +12,7 @@ module.exports = (robot) ->
   #
 
   dailyBlockers = ->
-    blockers = ':speech_balloon: Good morning, team! If we have any *blockers* or *opportunities to pair*, please thread them !here.'
+    blockers_msg = '@here: :speech_balloon: Good morning, team! If we have any *blockers* or *opportunities to pair*, please thread them here.'
     for room in rooms
       console.log('sending daily blockers to', room)
       robot.messageRoom room, blockers
