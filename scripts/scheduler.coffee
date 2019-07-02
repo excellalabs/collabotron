@@ -15,7 +15,7 @@ module.exports = (robot) ->
     blockers_msg = '@here: :speech_balloon: Good morning, team! If we have any *blockers* or *opportunities to pair*, please thread them here.'
     for room in rooms
       console.log('sending daily blockers to', room)
-      robot.messageRoom room, blockers
+      robot.messageRoom room, blockers_msg
 
   virtualStandup = ->
     robot.messageRoom room, '@here It\'s time for our virtual standup.  What are you working on that you need help with, and if you\'re free, what would you like to work on?'
