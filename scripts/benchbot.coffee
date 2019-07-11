@@ -30,27 +30,27 @@ module.exports = (robot) ->
   # ENTER / LEAVE CHANNEL REPLIES
   #
 
-  enterReplies = ['Hi', 'Target Acquired', 'Hello friend.', 'Welcome', 'Grab a seat']
-  leaveReplies = ['Are you still there?', 'Yay! :yay:', 'Woohoo! :ablobdance:']
+  # enterReplies = ['Hi', 'Target Acquired', 'Hello friend.', 'Welcome', 'Grab a seat']
+  # leaveReplies = ['Are you still there?', 'Yay! :yay:', 'Woohoo! :ablobdance:']
 
-  robot.enter (res) ->
-    res.send res.random enterReplies
-    benchWelcomeMessage = """
-🤠 Howdy, I'm benchbot. Welcome to the bench!
+#   robot.enter (res) ->
+#     res.send res.random enterReplies
+#     benchWelcomeMessage = """
+# 🤠 Howdy, I'm benchbot. Welcome to the bench!
 
-Here's what you need to know:
-1) Update your Excella-templated resume and upload it to Sharepoint
-2) Please add yourself to the bench email distribution list if you aren't already there
-3) Read more about these steps and other Bench related stuffs on the bench Portal, here: https://excellaco.sharepoint.com/sites/Services/SitePages/Bench-Portal.aspx?web=1
-"""
+# Here's what you need to know:
+# 1) Update your Excella-templated resume and upload it to Sharepoint
+# 2) Please add yourself to the bench email distribution list if you aren't already there
+# 3) Read more about these steps and other Bench related stuffs on the bench Portal, here: https://excellaco.sharepoint.com/sites/Services/SitePages/Bench-Portal.aspx?web=1
+# """
     # robot.messageRoom(res.envelope.user.id, benchWelcomeMessage)
 
-  robot.leave (res) ->
-    res.send res.random leaveReplies
-    benchDepartureMessage = """ We're sorry to see you leave the bench!
-Please make sure you've closed or otherwise passed off any LeanKit tickets to someone else on the bench.
-Best of luck on your next project!
-"""
+#   robot.leave (res) ->
+#     res.send res.random leaveReplies
+#     benchDepartureMessage = """ We're sorry to see you leave the bench!
+# Please make sure you've closed or otherwise passed off any LeanKit tickets to someone else on the bench.
+# Best of luck on your next project!
+# """
     # robot.messageRoom(res.envelope.user.id, benchDepartureMessage)
 
   #
