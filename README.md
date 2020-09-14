@@ -1,21 +1,19 @@
 # collabotron
 
-A hubot that manage bench functions for Excella.
-
-Currenly, collabotron can work in any channel it's pulled into, but ideally it should be set up to work only in the `collabotron_dev` and `bench` channels.
+An interactive Slack bot (powered by [hubot](https://hubot.github.com/)) that inspires innovative collaboration within Excella.
 
 ### Local Development
 
 1. Clone the repo.
 2. Run `npm install`
 3. Write code
-4. Run the bot locally with `HUBOT_SLACK_TOKEN=<your_token_here>./bin/hubot -a slack`
+4. Run the bot locally with `HUBOT_SLACK_TOKEN=<your_token_here> ./bin/hubot -a slack`
 
-You need two things for this. A Slack workspace where you can add hubot. I suggest creating your own personal Slack workspace. Click on the worspace name, go to Administration > Manage apps.
+You need two things for this. A Slack workspace where you can add hubot. I suggest creating your own personal Slack workspace. Click on the workspace name, go to `Administration` > `Manage apps`.
 
-Slack will give you a token for the app. You'll use that in place of `<your_token_here>`. No `<>` of course.
+Slack will give you a token for the app. You'll use that in place of `<your_token_here>`. No `<>`, of course.
 
-If you need to add any other env vars (such as IFTTT keys for fancy lights), then you'll need to add those to your `.bash_profile` or prepend them to the start up command just like you do with HUBOT_SLACK_TOKEN. You must also give those envs to Joe Hunt and he will add them to Heroku (the server that makes this work).
+If you need to add any other env vars (such as IFTTT keys for fancy lights), then you'll need to add those to your `.bash_profile` or prepend them to the start up command just like you do with HUBOT_SLACK_TOKEN. You must also give those envs Heroku (the server that makes this work), or whatever other deployment mechanism you use.
 
 ### Scriping Guidlines
 
