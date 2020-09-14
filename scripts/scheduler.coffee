@@ -5,7 +5,7 @@
 # module.exports = (robot) ->
 #   cronJob = require('hubot-cronjob')
 #   tz = 'America/New_York'
-#   rooms = ['benchbot-dev', 'bench']
+#   rooms = ['collabotron-dev', 'bench']
 
 #   #
 #   # Event Handler Functions

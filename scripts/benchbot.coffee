@@ -1,6 +1,6 @@
 module.exports = (robot) ->
 
-  robot.hear /benchbot test/i, (res) ->
+  robot.hear /collabotron test/i, (res) ->
     res.send "It's working."
 
   robot.hear /livin([g]?) the dream/i, (res) ->
@@ -36,7 +36,7 @@ module.exports = (robot) ->
 #   robot.enter (res) ->
 #     res.send res.random enterReplies
 #     benchWelcomeMessage = """
-# 🤠 Howdy, I'm benchbot. Welcome to the bench!
+# 🤠 Howdy, I'm collabotron. Welcome to the bench!
 
 # Here's what you need to know:
 # 1) Update your Excella-templated resume and upload it to Sharepoint
