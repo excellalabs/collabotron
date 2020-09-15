@@ -12,11 +12,11 @@ module.exports = (robot) ->
   #
 
   broadcast = ->
-    # TODO- REPLACE WITH COLLAB OPPS
+    projects = robot.brain.get 'projects'
     message = """
-    This is the broadcast message
-    - Includng some bullet points...
-    - ... and New lines
+    This is the broadcast message:
+    - I have #{projects.length} projects stored.
+    Beep boop.
     """
 
     for room in rooms
@@ -26,4 +26,4 @@ module.exports = (robot) ->
   # Event Configurations
   #
 
-  new cronJob('0 0 10 * * 4', tz, broadcast) # Thursdays @ 10am
+  # new cronJob('0 0 10 * * 4', tz, broadcast) # Thursdays @ 10am
