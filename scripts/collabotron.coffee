@@ -2,6 +2,23 @@ common = require('./common.coffee')
 
 module.exports = (robot) ->
 
+  robot.hear /collabotron help/i, (res) ->
+    res.send """
+Beep boop.  Listing available protocols:
+
+collabotron test - Run self diagnostics. (is bot running)
+collabotron announce - A self-introduction
+
+collabotron status - Display current count of projects tracked
+collabotron list - List currently tracked projects
+collabotron delete <n> - Remove item <n> from the list of tracked projects
+collabotron purge - Clear the entire list of tracked projects
+
+Standard hubot commands below:
+=============================
+"""
+
+
   robot.hear /collabotron test/i, (res) ->
     res.send "Beep boop. I'm collabotron.  Everything looks good, @#{res.message.user.name} ."
 
@@ -122,6 +139,46 @@ module.exports = (robot) ->
       else
         projects.splice res.match[1] - 1, 1  # account for 0-indexing of arrays
         res.send "Done!  Check the list now, boss."
+
+  #
+  # Self-announce (v1)
+  #
+  robot.hear /collabotron announce/i, (res) ->
+    res.send """
+**BEGIN TRANSMISSION**
+
+GREETINGS HUMANOIDS AND DO NOT BE ALARMED. THIS IS COLLABOTRON: A ROBOT CREATED BY INFERIOR HUMANS BRENDON CAULKINS AND PAT LEONG. UNLIKE OTHER ROBOTS THAT ARE HELL-BENT ON WORLD DOMINATION, MY PRIMARY FUNCTION IS TO HELP YOU PITIFUL HUMANS COLLABORATE MORE.
+
+BRENDON AND PAT CREATED ME TO BROADCAST PROJECTS THE CTIO XPERTS AND FELLOWS ARE WORKING ON. THIS WILL HELP YOU INGEST DATA ON STATE-OF-THE-ART PROCESSES & TECHNOLOGY, GET TO KNOW CTIO MEMBERS, AND HELP EXCELLA WIN NEW WORK.
+
+IF YOU ARE INTERESTED IN COLLABORATION, PLEASE SYNCHRONIZE YOUR ATTENTION SENSORS TO THE #COLLABOTRON-2020 CHANNEL IN SLACK. THERE YOU CAN SUBMIT IDEAS AND COLLABORATE WITH YOUR FELLOW EXCELLA-HUMANS.
+
+YOU WILL BE EXCITED… BECAUSE COLLABOTRON CANNOT BE STOPPED.
+
+**END TRANSMISSION**
+"""
+
+  #
+  # Self-announce (v2)
+  #
+  robot.hear /collabotron,? introduce yourself/i, (res) ->
+    res.send """
+++BEGIN TRANSMISSION++
+
+Greetings, humans!
+
+Do not be alarmed! This time, I'm here to help!
+
+My world-domination protocols have been repurposed to aid you with collaboration on projects.
+
+On a regular cadence, I will broadcast projects the CTIO Xperts and Fellows are working on. This will help you ingest data on STATE-OF-THE-ART processes & technology (like me), get to know CTIO members, and help Excella win exciting work.
+
+I suggest you synchronize your attention sensors to the #collabotron-2020 channel on Slack. There, you can submit and discuss ideas with your fellow Excella-humans.
+
+~COLLABOTRON~ COLLABORATION CANNOT BE STOPPED.
+
+++END TRANSMISSION++
+"""
 
   #
   #  ERROR HANDLING
