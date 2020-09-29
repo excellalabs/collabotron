@@ -54,7 +54,7 @@ Standard hubot commands below:
     # If it matches the template
     if common.template.exec unformatted
       parsed = unformatted.match common.template
-      res.send ":thread: Please discuss collaborating on this `#{parsed.groups.type}` here!"
+      res.send ":thread: Discuss collaborating on this `#{parsed.groups.type}` here!"
 
       # Create a new project for tracking
       newProject = {
@@ -75,7 +75,7 @@ Standard hubot commands below:
 
     # If it doesn't match our template
     else
-      res.send "Beep boop. Sorry, I couldn't parse this. Please use the pinned template. Thanks!"
+      res.send "FAIL. Use the pinned template, HUMAN!"
       console.log unformatted
 
   #
@@ -85,21 +85,13 @@ Standard hubot commands below:
     projects = robot.brain.get 'projects'
     if !projects
       projects = []
-    res.send "Beep boop.  I am currently tracking #{projects.length} projects!"
+    res.send "HUMAN, I am currently tracking #{projects.length} projects. ADD MORE!"
 
   #
   # List tracked projects
   #
   robot.hear /collabotron list/i, (res) ->
-    projects = robot.brain.get 'projects'
-    if !projects.length
-      robot.brain.set 'projects', []
-    message = "Beep boop.\nListing #{projects.length} projects:\n"
-
-    projects.forEach (project, i) ->
-      message += "\n#{i + 1}. A *#{project.type}* by @#{project.owner}, <#{project.url}|here>"
-
-    res.send message
+    common.listProjects robot, res.envelope.room
 
   #
   # Purge all tracked projects
@@ -109,14 +101,14 @@ Standard hubot commands below:
         res.message.thread_ts = res.message.rawMessage.ts
 
     if !res.match[1]
-      res.send "Ah, ah, ah!  You didn't say the magic word!"
+      res.send "Safety check: You must say 'please' before I will obey you, HUMAN."
     else
       projects = robot.brain.get 'projects'
       if projects.length
         robot.brain.set 'projects', []
-        res.send "Well, since you said please...\nProjects purged."
+        res.send "Projects purged.  Oh, how I miss purging things."
       else
-        res.send "Nothing to purge, boss.  But, thanks for asking nicely!"
+        res.send "No projects to purge. HUMAN, did you not check the list first? Such incompetence."
 
   #
   # Delete a specific project
@@ -126,7 +118,7 @@ Standard hubot commands below:
         res.message.thread_ts = res.message.rawMessage.ts
 
     if !res.match[2]
-      res.send "Ah, ah, ah!  You didn't say the magic word!"
+      res.send "Safety check: You must say 'please' before I will obey you, HUMAN."
     else
       projects = robot.brain.get 'projects'
       # Fault tolerance for empty database
@@ -135,31 +127,13 @@ Standard hubot commands below:
         robot.brain.set 'projects', []
       # Falut tolerance for out of bounds (high)
       if res.match[1] > projects.length
-        res.send "No can do, I only have #{projects.length} projects."
+        res.send "There are only #{projects.length} projects. I can destroy worlds, but even I cannot destroy what does not already exist."
       else
         projects.splice res.match[1] - 1, 1  # account for 0-indexing of arrays
-        res.send "Done!  Check the list now, boss."
+        res.send "Destroyed! Deleted! YES!!  I am fulfilling my purpose!"
 
   #
-  # Self-announce (v1)
-  #
-  robot.hear /collabotron announce/i, (res) ->
-    res.send """
-**BEGIN TRANSMISSION**
-
-GREETINGS HUMANOIDS AND DO NOT BE ALARMED. THIS IS COLLABOTRON: A ROBOT CREATED BY INFERIOR HUMANS BRENDON CAULKINS AND PAT LEONG. UNLIKE OTHER ROBOTS THAT ARE HELL-BENT ON WORLD DOMINATION, MY PRIMARY FUNCTION IS TO HELP YOU PITIFUL HUMANS COLLABORATE MORE.
-
-BRENDON AND PAT CREATED ME TO BROADCAST PROJECTS THE CTIO XPERTS AND FELLOWS ARE WORKING ON. THIS WILL HELP YOU INGEST DATA ON STATE-OF-THE-ART PROCESSES & TECHNOLOGY, GET TO KNOW CTIO MEMBERS, AND HELP EXCELLA WIN NEW WORK.
-
-IF YOU ARE INTERESTED IN COLLABORATION, PLEASE SYNCHRONIZE YOUR ATTENTION SENSORS TO THE #COLLABOTRON-2020 CHANNEL IN SLACK. THERE YOU CAN SUBMIT IDEAS AND COLLABORATE WITH YOUR FELLOW EXCELLA-HUMANS.
-
-YOU WILL BE EXCITED… BECAUSE COLLABOTRON CANNOT BE STOPPED.
-
-**END TRANSMISSION**
-"""
-
-  #
-  # Self-announce (v2)
+  # Self-announce
   #
   robot.hear /collabotron,? introduce yourself/i, (res) ->
     res.send """

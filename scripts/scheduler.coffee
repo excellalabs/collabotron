@@ -3,27 +3,28 @@
 #
 
 module.exports = (robot) ->
+  common = require('./common.coffee')
   cronJob = require('hubot-cronjob')
   tz = 'America/New_York'
-  rooms = ['collabotron-dev']
+  testRooms = ['collabotron-dev']
+  rooms = ["general", "bench", "software-development", "innovation"]
 
   #
   # Event Handler Functions
   #
 
   broadcast = ->
-    projects = robot.brain.get 'projects'
-    message = """
-    This is the broadcast message:
-    - I have #{projects.length} projects stored.
-    Beep boop.
-    """
-
     for room in rooms
-      robot.messageRoom room, message
+      common.listProjects robot, room
+
+
+  testBroadcast = ->
+    for room in testRooms
+      common.listProjects robot, room
 
   #
   # Event Configurations
   #
 
-  # new cronJob('0 0 10 * * 4', tz, broadcast) # Thursdays @ 10am
+  new cronJob('0 0 10 * * 4', tz, broadcast) # Thursdays @ 10am
+  new cronJob('0 0 10 * * 3', tz, testBroadcast) # Wednesdays @ 10am

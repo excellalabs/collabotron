@@ -17,5 +17,19 @@
 
   templateIndicator = /((Description\/Abstract)|(Description)|(Abstract))((.|\s)*)/i
 
+  listProjects = (robot, room) ->
+    projects = robot.brain.get 'projects'
+    if projects == null
+      robot.brain.set 'projects', []
+      projects = []
+      message = "No projects were posted.  Your collaboration potential is pathetic, HUMANS!"
+    else
+      message = "HUMANS, collaborate on these #{projects.length} projects!\n"
+      projects.forEach (project, i) ->
+        message += "\n#{i + 1}. A *#{project.type}* by @#{project.owner}, <#{project.url}|here>"
+
+    robot.messageRoom room, message
+
   exports.template = template
   exports.templateIndicator = templateIndicator
+  exports.listProjects = listProjects
