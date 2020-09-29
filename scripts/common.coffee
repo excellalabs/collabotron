@@ -4,7 +4,7 @@
   # What's in it for me? (Why people should collaborate)
   #
   newline = "(\n|\r|\n\r|\r\n)"
-  template = ///((Description\/Abstract:)|(Description:)|(Abstract:))\s?(?<description>[^\n\r]+)#{newline}(Project\sType:)\s?(?<type>[^\n\r]+)#{newline}((Purpose\/Value:)|(Purpose:)|(Value:))\s?(?<value>[^\n\r]+)#{newline}(What's\sin\sit\sfor\sme\?)\s?(?<benefit>[^\n\r]+)#{newline}?///
+  template = ///((Description\/Abstract:)|(Description:)|(Abstract:))\s?(?<description>[^\n\r]+)(\n|\r|\n\r|\r\n)(Project\sType:)\s?(?<type>[^\n\r]+)(\n|\r|\n\r|\r\n)((Purpose\/Value:)|(Purpose:)|(Value:))\s?(?<value>[^\n\r]+)(\n|\r|\n\r|\r\n)(What's\sin\sit\sfor\sme\?)\s?(?<benefit>[^\n\r]+)(\n|\r|\n\r|\r\n)?///
 
   templateIndicator = /((Description\/Abstract)|(Description)|(Abstract))((.|\s)*)/i
 
