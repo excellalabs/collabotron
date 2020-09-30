@@ -3,20 +3,17 @@
   # Purpose/Value: (How will it benefit Excella)
   # What's in it for me? (Why people should collaborate)
   #
-  newline = "(\n|\r|\n\r|\r\n)"
-  template = ///
-    # Description
-    ((Description\/Abstract:)|(Description:)|(Abstract:))\s?(?<description>[^\n\r]+)#{newline}
-    # Project Type
-    (Project\sType:)\s?(?<type>[^\n\r]+)#{newline}
-    # Value header
-    ((Purpose\/Value:)|(Purpose:)|(Value:))\s?(?<value>[^\n\r]+)#{newline}
-    # Benefits
-    (What's\sin\sit\sfor\sme\?)\s?(?<benefit>[^\n\r]+)#{newline}?
-    ///
+  newline = /(\n\r|\r\n|\n|\r)/g
+  descriptionRegex = /^((Description\/Abstract:)|(Description:)|(Abstract:))\s?((.|\s)+)$/i
+  typeRegex = /^(Project\sType:)\s?((.|\s)+)$/i
+  purposeRegex = /^((Purpose\/Value:)|(Purpose:)|(Value:))\s?((.|\s)+)$/i
+  benefitRegex = /^(What's\sin\sit\sfor\sme\?)\s?((.|\s)+)$/i
 
   templateIndicator = /((Description\/Abstract)|(Description)|(Abstract))((.|\s)*)/i
 
+  #
+  # Common use for listing projects
+  #
   listProjects = (robot, room) ->
     projects = robot.brain.get 'projects'
     if projects == null
@@ -30,6 +27,38 @@
 
     robot.messageRoom room, message
 
-  exports.template = template
+  #
+  # Test for matching our template
+  #
+  matchesTemplate = (message) ->
+    lines = message.split(newline)
+    return descriptionRegex.test(lines[0]) &&
+      typeRegex.test(lines[2]) &&
+      purposeRegex.test(lines[4]) &&
+      benefitRegex.test(lines[6])
+
+  #
+  # Extract the description
+  #
+  parseDescription = (message) ->
+    lines = message.split(newline)
+    match = descriptionRegex.exec lines[0]
+    return match[5]
+
+  #
+  # Extract the type
+  #
+  parseType = (message) ->
+    lines = message.split(newline)
+    match = typeRegex.exec lines[2]
+    return match[2]
+
+  #
+  # Exports for use in other files
+  #
+  exports.newline = newline
+  exports.matchesTemplate = matchesTemplate
+  exports.parseDescription = parseDescription
+  exports.parseType = parseType
   exports.templateIndicator = templateIndicator
   exports.listProjects = listProjects

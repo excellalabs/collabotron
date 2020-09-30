@@ -52,15 +52,20 @@ Standard hubot commands below:
     unformatted = res.message.text.replace /\*|_/g, ''
 
     # If it matches the template
-    if common.template.exec unformatted
-      parsed = unformatted.match common.template
-      res.send ":thread: Discuss collaborating on this `#{parsed.groups.type}` here!"
+    if common.matchesTemplate unformatted
+
+      # Parse the message
+      description = common.parseDescription unformatted
+      type = common.parseType unformatted
+
+      # Start the discussion thread
+      res.send ":thread: Discuss collaborating on this `#{type}` here!"
 
       # Create a new project for tracking
       newProject = {
         owner: res.message.user.name,
-        description: parsed.groups.description,
-        type: parsed.groups.type,
+        description,
+        type,
         url: "https://excella.slack.com/archives/#{res.message.room}/p#{res.message.id.replace /\./g, ''}"
       }
 
@@ -76,7 +81,6 @@ Standard hubot commands below:
     # If it doesn't match our template
     else
       res.send "FAIL. Use the pinned template, HUMAN!"
-      console.log unformatted
 
   #
   # Report on status of project tracking
