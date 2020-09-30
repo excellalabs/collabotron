@@ -27,4 +27,4 @@ module.exports = (robot) ->
   #
 
   new cronJob('0 0 10 * * 4', tz, broadcast) # Thursdays @ 10am
-  new cronJob('0 0 10 * * 3', tz, testBroadcast) # Wednesdays @ 10am
+  new cronJob('0 0 15 * * 3', tz, testBroadcast) # Wednesdays @ 3pm
