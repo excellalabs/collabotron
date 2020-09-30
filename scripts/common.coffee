@@ -3,8 +3,11 @@
   # Purpose/Value: (How will it benefit Excella)
   # What's in it for me? (Why people should collaborate)
   #
-  newline = "(\n|\r|\n\r|\r\n)"
-  template = /((Description\/Abstract:)|(Description:)|(Abstract:))\s?(?<description>[^\n\r]+)(\n|\r|\n\r|\r\n)(Project\sType:)\s?(?<type>[^\n\r]+)(\n|\r|\n\r|\r\n)((Purpose\/Value:)|(Purpose:)|(Value:))\s?(?<value>[^\n\r]+)(\n|\r|\n\r|\r\n)(What's\sin\sit\sfor\sme\?)\s?(?<benefit>[^\n\r]+)(\n|\r|\n\r|\r\n)?/i
+  newline = /(\n\r|\r\n|\n|\r)/g
+  descriptionRegex = /^((Description\/Abstract:)|(Description:)|(Abstract:))\s?(?<description>(.|\s)+)$/i
+  typeRegex = /^(Project\sType:)\s?(?<type>(.|\s)+)$/i
+  purposeRegex = /^((Purpose\/Value:)|(Purpose:)|(Value:))\s?(?<value>(.|\s)+)$/i
+  benefitRegex = /^(What's\sin\sit\sfor\sme\?)\s?(?<benefit>(.|\s)+)$/i
 
   templateIndicator = /((Description\/Abstract)|(Description)|(Abstract))((.|\s)*)/i
 
@@ -21,6 +24,10 @@
 
     robot.messageRoom room, message
 
-  exports.template = template
+  exports.newline = newline
+  exports.descriptionRegex = descriptionRegex
+  exports.typeRegex = typeRegex
+  exports.purposeRegex = purposeRegex
+  exports.benefitRegex = benefitRegex
   exports.templateIndicator = templateIndicator
   exports.listProjects = listProjects
