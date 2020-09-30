@@ -50,19 +50,22 @@ Standard hubot commands below:
 
     # strip formatting (* or _)
     unformatted = res.message.text.replace /\*|_/g, ''
-    lines = unformatted.split common.newline
 
     # If it matches the template
-    if common.descriptionRegex.test(lines[0]) && common.typeRegex.test(lines[2])
-      description = lines[0].match common.descriptionRegex
-      type = lines[2].match common.typeRegex
-      res.send ":thread: Discuss collaborating on this `#{type.groups.type}` here!"
+    if common.matchesTemplate unformatted
+
+      # Parse the message
+      description = common.parseDescription unformatted
+      type = common.parseType unformatted
+
+      # Start the discussion thread
+      res.send ":thread: Discuss collaborating on this `#{type}` here!"
 
       # Create a new project for tracking
       newProject = {
         owner: res.message.user.name,
-        description: description.groups.description,
-        type: type.groups.type,
+        description,
+        type,
         url: "https://excella.slack.com/archives/#{res.message.room}/p#{res.message.id.replace /\./g, ''}"
       }
 
