@@ -4,7 +4,7 @@
   # What's in it for me? (Why people should collaborate)
   #
   newline = /(\n\r|\r\n|\n|\r)/g
-  descriptionRegex = /^((Description\/Abstract:)|(Description:)|(Abstract:))\s?(?<description>(.|\s)+)$/i
+  descriptionRegex = /^((Description\/Abstract:)|(Description:)|(Abstract:))\s?((.|\s)+)$/i
   typeRegex = /^(Project\sType:)\s?(?<type>(.|\s)+)$/i
   purposeRegex = /^((Purpose\/Value:)|(Purpose:)|(Value:))\s?(?<value>(.|\s)+)$/i
   benefitRegex = /^(What's\sin\sit\sfor\sme\?)\s?(?<benefit>(.|\s)+)$/i
